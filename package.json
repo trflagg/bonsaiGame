@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/trflagg/bonsaiGame/issues"
   },
-  "homepage": "https://github.com/trflagg/bonsaiGame#readme"
+  "homepage": "https://github.com/trflagg/bonsaiGame#readme",
+  "devDependencies": {
+    "ts-loader": "^5.0.0",
+    "source-map-loader": "^0.2.3",
+    "typescript": "^2.8.3"
+  }
 }
