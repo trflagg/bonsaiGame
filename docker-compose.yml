@@ -4,3 +4,10 @@ httpserver:
     - "3000:3000"
   volumes:
     - ".:/public"
+webpack:
+  build: "https://github.com/trflagg/docker-webpack-dev-server.git#node10.1"
+  ports:
+    - "8080:8080"
+  volumes:
+    - '.:/src'
+  command: --host 0.0.0.0
