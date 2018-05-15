@@ -39,6 +39,10 @@ export default class Game {
     let secondNode = branch.endNode;
     let secondBranch = new Branch('b2',2).addToScene(this._scene);
     secondNode.addChildBranch(secondBranch, new Babylon.Vector3(0, -Math.PI/4, 0));
+
+    let thirdNode = secondBranch.endNode;
+    let thirdBranch = new Branch('b3', 1).addToScene(this._scene);
+    thirdNode.addChildBranch(thirdBranch, new Babylon.Vector3(0, -Math.PI/4, 0));
   }
 
   doRender() : void {
