@@ -30,12 +30,10 @@ export default class BranchNode {
 
   transformBranchByParentBranch(branch : Branch) : void {
     const { parentBranch } = this; 
-    branch.mesh.rotationQuaternion = parentBranch.mesh.rotationQuaternion;
-    const worldMatrix = parentBranch.mesh.getWorldMatrix();
-    const newPosition = new Babylon.Vector3(0, 0, parentBranch.length);
-    branch.mesh.position = Babylon.Vector3.TransformCoordinates(
-      newPosition, 
-      worldMatrix
+    branch.mesh.translate(
+      new Babylon.Vector3(0, 0, 1),
+      parentBranch.length,
+      Babylon.Space.WORLD
     );
   }
 
