@@ -1,6 +1,8 @@
 import * as Babylon from 'babylonjs';
 
-export default class Pot {
+import * as Bonsai from './types.d';
+
+export default class Pot implements Bonsai.GameObject {
   private mesh : Babylon.Mesh;
 
   constructor() {

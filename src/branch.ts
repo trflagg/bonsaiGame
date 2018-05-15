@@ -1,6 +1,8 @@
 import * as Babylon from 'babylonjs';
 
-export default class Branch {
+import * as Bonsai from './types.d';
+
+export default class Branch implements Bonsai.GameObject {
   private mesh : Babylon.Mesh;
 
   constructor() {
@@ -22,7 +24,7 @@ export default class Branch {
 
     let myPath = [
       new Babylon.Vector3(0, 0, 0),
-      new Babylon.Vector3(0, 0, 0.5)
+      new Babylon.Vector3(0, 0, 1)
     ];
 
     this.mesh = Babylon.MeshBuilder.ExtrudeShapeCustom("star", {
