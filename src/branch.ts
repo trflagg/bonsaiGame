@@ -3,6 +3,8 @@ import * as Babylon from 'babylonjs';
 import * as Bonsai from './types.d';
 import BranchNode from './branchNode';
 
+const USE_LINES = false;
+
 export default class Branch implements Bonsai.GameObject {
   private angle : Babylon.Vector3;
   private position : Babylon.Vector3;
@@ -76,16 +78,22 @@ export default class Branch implements Bonsai.GameObject {
       new Babylon.Vector3(0, 0, this.length)
     ];
 
-    this.mesh = Babylon.MeshBuilder.ExtrudeShapeCustom(this.id, {
-      shape: myShape, 
-      path: myPath, 
-      sideOrientation: Babylon.Mesh.DOUBLESIDE,
-      cap: Babylon.Mesh.CAP_ALL,
-      updatable: true
-    }, scene);
-
-    this.mesh.position = this.position;
-    this.mesh.rotation = this.angle;
+    if (USE_LINES) {
+      this.mesh = Babylon.MeshBuilder.CreateLines(this.id, {
+        points: myPath,
+      }, scene);
+      this.mesh.position = this.position;
+      this.mesh.rotation = this.angle;
+    }
+    else {
+      this.mesh = Babylon.MeshBuilder.ExtrudeShapeCustom(this.id, {
+        shape: myShape,
+        path: myPath,
+        sideOrientation: Babylon.Mesh.DOUBLESIDE,
+        cap: Babylon.Mesh.CAP_ALL,
+        updatable: true
+      }, scene);
+    }
 
     return this;
   }
