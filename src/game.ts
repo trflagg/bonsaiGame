@@ -31,10 +31,14 @@ export default class Game {
     pot.addToScene(this._scene);
 
     let trunk = new TrunkNode();
-    let branch = new Branch();
-    branch.setLength(3);
+
+
+    let branch = new Branch('b1', 3).addToScene(this._scene);
     trunk.setChildBranch(branch, new Babylon.Vector3(-Math.PI/2, 0, 0));
-    branch.addToScene(this._scene);
+
+    let secondNode = branch.endNode;
+    let secondBranch = new Branch('b2',2).addToScene(this._scene);
+    secondNode.addChildBranch(secondBranch, new Babylon.Vector3(0, 0, 0));
   }
 
   doRender() : void {
