@@ -18,8 +18,7 @@ export default class BranchNode {
     branch.setParentNode(this);
     if (parentBranch && parentBranch.mesh && branch.mesh) {
       branch.setParentMesh(parentBranch);
-      // todo: handle angle
-      this.transformBranchByParentBranch(branch);
+      this.transformBranchByParentBranch(branch, angle);
     }
     else {
       branch.setAngle(angle);
@@ -28,13 +27,14 @@ export default class BranchNode {
     return this;
   }
 
-  transformBranchByParentBranch(branch : Branch) : void {
+  transformBranchByParentBranch(branch : Branch, angle : Babylon.Vector3) : void {
     const { parentBranch } = this; 
     branch.mesh.translate(
       new Babylon.Vector3(0, 0, 1),
       parentBranch.length,
       Babylon.Space.WORLD
     );
+    branch.setAngle(angle);
   }
 
   setParentBranch(parentBranch : Branch) : BranchNode {
