@@ -4,9 +4,23 @@ import * as Bonsai from './types.d';
 
 export default class Branch implements Bonsai.GameObject {
   private mesh : Babylon.Mesh;
+  private length : number;
+  private angle : Babylon.Vector3;
 
   constructor() {
     this.mesh = null;
+    this.length = 0;
+    this.angle = new Babylon.Vector3(0, 0, 0);
+  }
+
+  setAngle(angle : Babylon.Vector3) : Branch {
+    this.angle = angle;
+    return this;
+  }
+
+  setLength(length : number) : Branch {
+    this.length = length;
+    return this;
   }
 
   addToScene(scene : Babylon.Scene) : void {
@@ -24,7 +38,7 @@ export default class Branch implements Bonsai.GameObject {
 
     let myPath = [
       new Babylon.Vector3(0, 0, 0),
-      new Babylon.Vector3(0, 0, 1)
+      new Babylon.Vector3(0, 0, this.length)
     ];
 
     this.mesh = Babylon.MeshBuilder.ExtrudeShapeCustom("star", {
@@ -35,7 +49,7 @@ export default class Branch implements Bonsai.GameObject {
       updatable: true
     }, scene);
 
-    this.mesh.rotate(Babylon.Axis.X, -(Math.PI/2), Babylon.Space.LOCAL);
+    this.mesh.rotation = this.angle;
   }
 }
 

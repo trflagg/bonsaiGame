@@ -2,6 +2,7 @@ import * as Babylon from 'babylonjs';
 
 import Pot from './pot';
 import Branch from './branch';
+import TrunkNode from './trunkNode';
 
 export default class Game {
   private _canvas: HTMLCanvasElement;
@@ -29,7 +30,11 @@ export default class Game {
     let pot = new Pot();
     pot.addToScene(this._scene);
 
-    let branch = new Branch().addToScene(this._scene);
+    let trunk = new TrunkNode();
+    let branch = new Branch();
+    branch.setLength(3);
+    trunk.setChildBranch(branch, new Babylon.Vector3(-Math.PI/2, 0, 0));
+    branch.addToScene(this._scene);
   }
 
   doRender() : void {
